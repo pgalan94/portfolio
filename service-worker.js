@@ -12,7 +12,7 @@ self.addEventListener( 'install', function(){
 
 self.addEventListener( 'activate', function( event ) {
   event.waitUntil(
-    caches.open( 'name_your_cache_container' )
+    caches.open('v1')
       .then( function( cache ) {
         return cache.addAll( urlsToCache );
       })
@@ -25,21 +25,19 @@ self.addEventListener( 'activate', function( event ) {
   );
 });
 
-self.addEventListener( 'fetch', function( event ) {
+self.addEventListener( 'fetch', (event) => {
   event.respondWith(
-    caches.match( event.request )
-      .then(function( response ) {
-        if ( response ) {
-          return response;
-        }
-        return fetch( event.request );
-      })
-      .then( function( resp ) {
-        return caches.open( 'name_your_cache_container' )
-          .then( function( cache ) {
-            cache.put( event.request, resp.clone( ));
-              return resp;
-          });
-      });
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  ).then( (resp) => {
+    return caches.open('v1').then( (cache) => {
+      cache.put( event.request, resp.clone( ));
+        return resp;
+    });
+  });
 });
 
