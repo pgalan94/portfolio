@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Déo</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json" />
     <meta property="og:site_name" content="Pedro Déo's Portfolio">
     <meta property="og:title" content="Pedro Déo's Portfolio" />
-    <meta property="og:description" content="A brief resume of my accomplishments, goals, experiences and capabilities." />
+    <meta property="og:description"
+        content="A brief resume of my accomplishments, goals, experiences and capabilities." />
     <meta property="og:image" itemprop="image" content="//pgalan94.github.io/portfolio/favicon.ico">
     <meta property="og:type" content="website" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id=root></div>
+
+    <!-- service worker -->
+    <script>
+    </script>
+
+    <script>
+        const registerServiceWorker = async () => {
+            if ("serviceWorker" in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.register("service-worker.js", {
+                        scope: "/portfolio/",
+                    });
+                    if (registration.installing) {
+                        console.log("Service worker installing");
+                    } else if (registration.waiting) {
+                        console.log("Service worker installed");
+                    } else if (registration.active) {
+                        console.log("Service worker active");
+                    }
+                } catch (error) {
+                    console.error(`Registration failed with ${error}`);
+                }
+            }
+        };
+
+        registerServiceWorker();
+    </script>
+
 
     <script>
         const newElement = (htmlTag, textContent) => {
@@ -33,10 +63,10 @@
 
     <script>
         let root = document.getElementById('root');
-        newChild(root, 'h1', "Pedro Déo's portfolio2");
-        newChild(root, 'p', "Lorem");
+        // newChild(root, 'h1', "Pedro Déo's portfolio");
+        newChild(root, 'p', "Under construction...");
     </script>
 
-  </body>
+</body>
 
 </html>
