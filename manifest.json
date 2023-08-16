@@ -1,0 +1,17 @@
+{
+    "theme_color": "#66606c",
+    "background_color": "#66606c",
+    "display": "standalone",
+    "scope": "/portfolio/",
+    "start_url": "/portfolio/",
+    "name": "Pedro Déo's portfolio",
+    "short_name": "PedroDéo",
+    "description": "My personal portfolio",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "225x225",
+            "type": "image/ico"
+        }
+    ]
+}
